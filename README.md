@@ -3,7 +3,7 @@
 In the interest of expanding availability of examples for this device, I have 
 created this usbd_scanner example.  This scans for advertisements and publishes them to a USB CDC ACM port.
 
-Right now this works for the nRF52840 (PCA10056).  PCA10059 will aarive shortly.
+This works for the nRF52840 DK (PCA10056) and nRF5280 Dongle (PCA10059).
 
 This example is based on the one found in nRF5 SDK version 17.0.2
 Please see the Nordic Semiconductor InfoCenter for more information.
