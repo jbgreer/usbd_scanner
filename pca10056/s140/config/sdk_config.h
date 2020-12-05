@@ -46,6 +46,17 @@
 #ifdef USE_APP_CONFIG
 #include "app_config.h"
 #endif
+// <h> Application 
+
+//==========================================================
+// <o> NRF_BLE_GQ_QUEUE_SIZE - Queue size for BLE GATT Queue module. 
+#ifndef NRF_BLE_GQ_QUEUE_SIZE
+#define NRF_BLE_GQ_QUEUE_SIZE 4
+#endif
+
+// </h> 
+//==========================================================
+
 // <h> Board Support 
 
 //==========================================================
@@ -53,7 +64,7 @@
  
 
 #ifndef BSP_BTN_BLE_ENABLED
-#define BSP_BTN_BLE_ENABLED 1
+#define BSP_BTN_BLE_ENABLED 0
 #endif
 
 // </h> 
@@ -66,7 +77,14 @@
  
 
 #ifndef BLE_ADVERTISING_ENABLED
-#define BLE_ADVERTISING_ENABLED 1
+#define BLE_ADVERTISING_ENABLED 0
+#endif
+
+// <q> BLE_DB_DISCOVERY_ENABLED  - ble_db_discovery - Database discovery module
+ 
+
+#ifndef BLE_DB_DISCOVERY_ENABLED
+#define BLE_DB_DISCOVERY_ENABLED 0
 #endif
 
 // <e> BLE_DTM_ENABLED - ble_dtm - Module for testing RF/PHY using DTM commands
@@ -131,7 +149,7 @@
 // <e> NRF_BLE_CONN_PARAMS_ENABLED - ble_conn_params - Initiating and executing a connection parameters negotiation procedure
 //==========================================================
 #ifndef NRF_BLE_CONN_PARAMS_ENABLED
-#define NRF_BLE_CONN_PARAMS_ENABLED 1
+#define NRF_BLE_CONN_PARAMS_ENABLED 0
 #endif
 // <o> NRF_BLE_CONN_PARAMS_MAX_SLAVE_LATENCY_DEVIATION - The largest acceptable deviation in slave latency. 
 // <i> The largest deviation (+ or -) from the requested slave latency that will not be renegotiated.
@@ -153,8 +171,35 @@
  
 
 #ifndef NRF_BLE_GATT_ENABLED
-#define NRF_BLE_GATT_ENABLED 1
+#define NRF_BLE_GATT_ENABLED 0
 #endif
+
+// <e> NRF_BLE_GQ_ENABLED - nrf_ble_gq - BLE GATT Queue Module
+//==========================================================
+#ifndef NRF_BLE_GQ_ENABLED
+#define NRF_BLE_GQ_ENABLED 0
+#endif
+// <o> NRF_BLE_GQ_DATAPOOL_ELEMENT_SIZE - Default size of a single element in the pool of memory objects. 
+#ifndef NRF_BLE_GQ_DATAPOOL_ELEMENT_SIZE
+#define NRF_BLE_GQ_DATAPOOL_ELEMENT_SIZE 20
+#endif
+
+// <o> NRF_BLE_GQ_DATAPOOL_ELEMENT_COUNT - Default number of elements in the pool of memory objects. 
+#ifndef NRF_BLE_GQ_DATAPOOL_ELEMENT_COUNT
+#define NRF_BLE_GQ_DATAPOOL_ELEMENT_COUNT 8
+#endif
+
+// <o> NRF_BLE_GQ_GATTC_WRITE_MAX_DATA_LEN - Maximal size of the data inside GATTC write request (in bytes). 
+#ifndef NRF_BLE_GQ_GATTC_WRITE_MAX_DATA_LEN
+#define NRF_BLE_GQ_GATTC_WRITE_MAX_DATA_LEN 2
+#endif
+
+// <o> NRF_BLE_GQ_GATTS_HVX_MAX_DATA_LEN - Maximal size of the data inside GATTC notification or indication request (in bytes). 
+#ifndef NRF_BLE_GQ_GATTS_HVX_MAX_DATA_LEN
+#define NRF_BLE_GQ_GATTS_HVX_MAX_DATA_LEN 16
+#endif
+
+// </e>
 
 // <e> NRF_BLE_QWR_ENABLED - nrf_ble_qwr - Queued writes support module (prepare/execute write)
 //==========================================================
@@ -165,6 +210,107 @@
 #ifndef NRF_BLE_QWR_MAX_ATTR
 #define NRF_BLE_QWR_MAX_ATTR 0
 #endif
+
+// </e>
+
+// <e> NRF_BLE_SCAN_ENABLED - nrf_ble_scan - Scanning Module
+//==========================================================
+#ifndef NRF_BLE_SCAN_ENABLED
+#define NRF_BLE_SCAN_ENABLED 1
+#endif
+// <o> NRF_BLE_SCAN_BUFFER - Data length for an advertising set. 
+#ifndef NRF_BLE_SCAN_BUFFER
+#define NRF_BLE_SCAN_BUFFER 255
+#endif
+
+// <o> NRF_BLE_SCAN_NAME_MAX_LEN - Maximum size for the name to search in the advertisement report. 
+#ifndef NRF_BLE_SCAN_NAME_MAX_LEN
+#define NRF_BLE_SCAN_NAME_MAX_LEN 32
+#endif
+
+// <o> NRF_BLE_SCAN_SHORT_NAME_MAX_LEN - Maximum size of the short name to search for in the advertisement report. 
+#ifndef NRF_BLE_SCAN_SHORT_NAME_MAX_LEN
+#define NRF_BLE_SCAN_SHORT_NAME_MAX_LEN 32
+#endif
+
+// <o> NRF_BLE_SCAN_SCAN_INTERVAL - Scanning interval. Determines the scan interval in units of 0.625 millisecond. 
+#ifndef NRF_BLE_SCAN_SCAN_INTERVAL
+#define NRF_BLE_SCAN_SCAN_INTERVAL 160
+#endif
+
+// <o> NRF_BLE_SCAN_SCAN_DURATION - Duration of a scanning session in units of 10 ms. Range: 0x0001 - 0xFFFF (10 ms to 10.9225 ms). If set to 0x0000, the scanning continues until it is explicitly disabled. 
+#ifndef NRF_BLE_SCAN_SCAN_DURATION
+#define NRF_BLE_SCAN_SCAN_DURATION 0
+#endif
+
+// <o> NRF_BLE_SCAN_SCAN_WINDOW - Scanning window. Determines the scanning window in units of 0.625 millisecond. 
+#ifndef NRF_BLE_SCAN_SCAN_WINDOW
+#define NRF_BLE_SCAN_SCAN_WINDOW 80
+#endif
+
+// <o> NRF_BLE_SCAN_MIN_CONNECTION_INTERVAL - Determines minimum connection interval in milliseconds. 
+#ifndef NRF_BLE_SCAN_MIN_CONNECTION_INTERVAL
+#define NRF_BLE_SCAN_MIN_CONNECTION_INTERVAL 7.5
+#endif
+
+// <o> NRF_BLE_SCAN_MAX_CONNECTION_INTERVAL - Determines maximum connection interval in milliseconds. 
+#ifndef NRF_BLE_SCAN_MAX_CONNECTION_INTERVAL
+#define NRF_BLE_SCAN_MAX_CONNECTION_INTERVAL 30
+#endif
+
+// <o> NRF_BLE_SCAN_SLAVE_LATENCY - Determines the slave latency in counts of connection events. 
+#ifndef NRF_BLE_SCAN_SLAVE_LATENCY
+#define NRF_BLE_SCAN_SLAVE_LATENCY 0
+#endif
+
+// <o> NRF_BLE_SCAN_SUPERVISION_TIMEOUT - Determines the supervision time-out in units of 10 millisecond. 
+#ifndef NRF_BLE_SCAN_SUPERVISION_TIMEOUT
+#define NRF_BLE_SCAN_SUPERVISION_TIMEOUT 4000
+#endif
+
+// <o> NRF_BLE_SCAN_SCAN_PHY  - PHY to scan on.
+ 
+// <0=> BLE_GAP_PHY_AUTO 
+// <1=> BLE_GAP_PHY_1MBPS 
+// <2=> BLE_GAP_PHY_2MBPS 
+// <4=> BLE_GAP_PHY_CODED 
+// <255=> BLE_GAP_PHY_NOT_SET 
+
+#ifndef NRF_BLE_SCAN_SCAN_PHY
+#define NRF_BLE_SCAN_SCAN_PHY 1
+#endif
+
+// <e> NRF_BLE_SCAN_FILTER_ENABLE - Enabling filters for the Scanning Module.
+//==========================================================
+#ifndef NRF_BLE_SCAN_FILTER_ENABLE
+#define NRF_BLE_SCAN_FILTER_ENABLE 0
+#endif
+// <o> NRF_BLE_SCAN_UUID_CNT - Number of filters for UUIDs. 
+#ifndef NRF_BLE_SCAN_UUID_CNT
+#define NRF_BLE_SCAN_UUID_CNT 2
+#endif
+
+// <o> NRF_BLE_SCAN_NAME_CNT - Number of name filters. 
+#ifndef NRF_BLE_SCAN_NAME_CNT
+#define NRF_BLE_SCAN_NAME_CNT 1
+#endif
+
+// <o> NRF_BLE_SCAN_SHORT_NAME_CNT - Number of short name filters. 
+#ifndef NRF_BLE_SCAN_SHORT_NAME_CNT
+#define NRF_BLE_SCAN_SHORT_NAME_CNT 0
+#endif
+
+// <o> NRF_BLE_SCAN_ADDRESS_CNT - Number of address filters. 
+#ifndef NRF_BLE_SCAN_ADDRESS_CNT
+#define NRF_BLE_SCAN_ADDRESS_CNT 0
+#endif
+
+// <o> NRF_BLE_SCAN_APPEARANCE_CNT - Number of appearance filters. 
+#ifndef NRF_BLE_SCAN_APPEARANCE_CNT
+#define NRF_BLE_SCAN_APPEARANCE_CNT 0
+#endif
+
+// </e>
 
 // </e>
 
@@ -191,7 +337,7 @@
 // <i> Enable/disable central-specific Peer Manager functionality.
 
 #ifndef PM_CENTRAL_ENABLED
-#define PM_CENTRAL_ENABLED 1
+#define PM_CENTRAL_ENABLED 0
 #endif
 
 // <q> PM_SERVICE_CHANGED_ENABLED  - Enable/disable the service changed management for GATT server in Peer Manager.
@@ -201,7 +347,7 @@
 // <i> disable this to save code space.
 
 #ifndef PM_SERVICE_CHANGED_ENABLED
-#define PM_SERVICE_CHANGED_ENABLED 1
+#define PM_SERVICE_CHANGED_ENABLED 0
 #endif
 
 // <q> PM_PEER_RANKS_ENABLED  - Enable/disable the peer rank management in Peer Manager.
@@ -210,7 +356,7 @@
 // <i> Set this to false to save code space if not using the peer rank API.
 
 #ifndef PM_PEER_RANKS_ENABLED
-#define PM_PEER_RANKS_ENABLED 1
+#define PM_PEER_RANKS_ENABLED 0
 #endif
 
 // <q> PM_LESC_ENABLED  - Enable/disable LESC support in Peer Manager.
@@ -497,7 +643,7 @@
 // <e> BLE_NUS_ENABLED - ble_nus - Nordic UART Service
 //==========================================================
 #ifndef BLE_NUS_ENABLED
-#define BLE_NUS_ENABLED 1
+#define BLE_NUS_ENABLED 0
 #endif
 // <e> BLE_NUS_CONFIG_LOG_ENABLED - Enables logging in the module.
 //==========================================================
@@ -596,7 +742,7 @@
 // <e> NRF_STACK_GUARD_ENABLED - nrf_stack_guard - Stack guard
 //==========================================================
 #ifndef NRF_STACK_GUARD_ENABLED
-#define NRF_STACK_GUARD_ENABLED 0
+#define NRF_STACK_GUARD_ENABLED 1
 #endif
 // <o> NRF_STACK_GUARD_CONFIG_SIZE  - Size of the stack guard.
  
@@ -624,7 +770,7 @@
 // <e> NRF_CRYPTO_ENABLED - nrf_crypto - Cryptography library.
 //==========================================================
 #ifndef NRF_CRYPTO_ENABLED
-#define NRF_CRYPTO_ENABLED 1
+#define NRF_CRYPTO_ENABLED 0
 #endif
 // <o> NRF_CRYPTO_ALLOCATOR  - Memory allocator
  
@@ -658,7 +804,7 @@
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_BL_ECC_SECP256R1_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_BL_ECC_SECP256R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_BL_ECC_SECP256R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_BL_HASH_SHA256_ENABLED  - CC310_BL SHA-256 hash functionality.
@@ -667,7 +813,7 @@
 // <i> CC310_BL backend implementation for hardware-accelerated SHA-256.
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_BL_HASH_SHA256_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_BL_HASH_SHA256_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_BL_HASH_SHA256_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_BL_HASH_AUTOMATIC_RAM_BUFFER_ENABLED  - nrf_cc310_bl buffers to RAM before running hash operation
@@ -692,7 +838,7 @@
 // <i> Select a library version compatible with the configuration. When interrupts are disable, a version named _noint must be used
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_BL_INTERRUPTS_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_BL_INTERRUPTS_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_BL_INTERRUPTS_ENABLED 0
 #endif
 
 // </e>
@@ -708,147 +854,147 @@
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_AES_CBC_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_AES_CBC_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_AES_CBC_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_AES_CTR_ENABLED  - Enable the AES CTR mode using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_AES_CTR_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_AES_CTR_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_AES_CTR_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_AES_ECB_ENABLED  - Enable the AES ECB mode using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_AES_ECB_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_AES_ECB_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_AES_ECB_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_AES_CBC_MAC_ENABLED  - Enable the AES CBC_MAC mode using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_AES_CBC_MAC_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_AES_CBC_MAC_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_AES_CBC_MAC_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_AES_CMAC_ENABLED  - Enable the AES CMAC mode using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_AES_CMAC_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_AES_CMAC_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_AES_CMAC_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_AES_CCM_ENABLED  - Enable the AES CCM mode using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_AES_CCM_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_AES_CCM_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_AES_CCM_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_AES_CCM_STAR_ENABLED  - Enable the AES CCM* mode using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_AES_CCM_STAR_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_AES_CCM_STAR_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_AES_CCM_STAR_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_CHACHA_POLY_ENABLED  - Enable the CHACHA-POLY mode using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_CHACHA_POLY_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_CHACHA_POLY_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_CHACHA_POLY_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_ECC_SECP160R1_ENABLED  - Enable the secp160r1 elliptic curve support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_ECC_SECP160R1_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP160R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP160R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_ECC_SECP160R2_ENABLED  - Enable the secp160r2 elliptic curve support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_ECC_SECP160R2_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP160R2_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP160R2_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_ECC_SECP192R1_ENABLED  - Enable the secp192r1 elliptic curve support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_ECC_SECP192R1_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP192R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP192R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_ECC_SECP224R1_ENABLED  - Enable the secp224r1 elliptic curve support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_ECC_SECP224R1_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP224R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP224R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_ECC_SECP256R1_ENABLED  - Enable the secp256r1 elliptic curve support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_ECC_SECP256R1_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP256R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP256R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_ECC_SECP384R1_ENABLED  - Enable the secp384r1 elliptic curve support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_ECC_SECP384R1_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP384R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP384R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_ECC_SECP521R1_ENABLED  - Enable the secp521r1 elliptic curve support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_ECC_SECP521R1_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP521R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP521R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_ECC_SECP160K1_ENABLED  - Enable the secp160k1 elliptic curve support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_ECC_SECP160K1_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP160K1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP160K1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_ECC_SECP192K1_ENABLED  - Enable the secp192k1 elliptic curve support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_ECC_SECP192K1_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP192K1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP192K1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_ECC_SECP224K1_ENABLED  - Enable the secp224k1 elliptic curve support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_ECC_SECP224K1_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP224K1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP224K1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_ECC_SECP256K1_ENABLED  - Enable the secp256k1 elliptic curve support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_ECC_SECP256K1_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP256K1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_ECC_SECP256K1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_ECC_CURVE25519_ENABLED  - Enable the Curve25519 curve support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_ECC_CURVE25519_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_ECC_CURVE25519_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_ECC_CURVE25519_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_ECC_ED25519_ENABLED  - Enable the Ed25519 curve support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_ECC_ED25519_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_ECC_ED25519_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_ECC_ED25519_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_HASH_SHA256_ENABLED  - CC310 SHA-256 hash functionality.
@@ -857,7 +1003,7 @@
 // <i> CC310 backend implementation for hardware-accelerated SHA-256.
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_HASH_SHA256_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_HASH_SHA256_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_HASH_SHA256_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_HASH_SHA512_ENABLED  - CC310 SHA-512 hash functionality
@@ -866,7 +1012,7 @@
 // <i> CC310 backend implementation for SHA-512 (in software).
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_HASH_SHA512_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_HASH_SHA512_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_HASH_SHA512_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_HMAC_SHA256_ENABLED  - CC310 HMAC using SHA-256
@@ -875,7 +1021,7 @@
 // <i> CC310 backend implementation for HMAC using hardware-accelerated SHA-256.
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_HMAC_SHA256_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_HMAC_SHA256_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_HMAC_SHA256_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_HMAC_SHA512_ENABLED  - CC310 HMAC using SHA-512
@@ -884,14 +1030,14 @@
 // <i> CC310 backend implementation for HMAC using SHA-512 (in software).
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_HMAC_SHA512_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_HMAC_SHA512_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_HMAC_SHA512_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_RNG_ENABLED  - Enable RNG support using CC310.
  
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_RNG_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_RNG_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_RNG_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_CC310_INTERRUPTS_ENABLED  - Enable Interrupts while support using CC310.
@@ -900,7 +1046,7 @@
 // <i> Select a library version compatible with the configuration. When interrupts are disable, a version named _noint must be used
 
 #ifndef NRF_CRYPTO_BACKEND_CC310_INTERRUPTS_ENABLED
-#define NRF_CRYPTO_BACKEND_CC310_INTERRUPTS_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CC310_INTERRUPTS_ENABLED 0
 #endif
 
 // </e>
@@ -914,7 +1060,7 @@
  
 
 #ifndef NRF_CRYPTO_BACKEND_CIFRA_AES_EAX_ENABLED
-#define NRF_CRYPTO_BACKEND_CIFRA_AES_EAX_ENABLED 1
+#define NRF_CRYPTO_BACKEND_CIFRA_AES_EAX_ENABLED 0
 #endif
 
 // </e>
@@ -928,56 +1074,56 @@
  
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_AES_CBC_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_CBC_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_CBC_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_AES_CTR_ENABLED  - Enable the AES CTR mode using mbed TLS.
  
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_AES_CTR_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_CTR_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_CTR_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_AES_CFB_ENABLED  - Enable the AES CFB mode using mbed TLS.
  
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_AES_CFB_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_CFB_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_CFB_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_AES_ECB_ENABLED  - Enable the AES ECB mode using mbed TLS.
  
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_AES_ECB_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_ECB_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_ECB_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_AES_CBC_MAC_ENABLED  - Enable the AES CBC MAC mode using mbed TLS.
  
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_AES_CBC_MAC_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_CBC_MAC_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_CBC_MAC_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_AES_CMAC_ENABLED  - Enable the AES CMAC mode using mbed TLS.
  
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_AES_CMAC_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_CMAC_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_CMAC_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_AES_CCM_ENABLED  - Enable the AES CCM mode using mbed TLS.
  
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_AES_CCM_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_CCM_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_CCM_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_AES_GCM_ENABLED  - Enable the AES GCM mode using mbed TLS.
  
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_AES_GCM_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_GCM_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_AES_GCM_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP192R1_ENABLED  - Enable secp192r1 (NIST 192-bit) curve
@@ -986,7 +1132,7 @@
 // <i> Enable this setting if you need secp192r1 (NIST 192-bit) support using MBEDTLS
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP192R1_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP192R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP192R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP224R1_ENABLED  - Enable secp224r1 (NIST 224-bit) curve
@@ -995,7 +1141,7 @@
 // <i> Enable this setting if you need secp224r1 (NIST 224-bit) support using MBEDTLS
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP224R1_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP224R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP224R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP256R1_ENABLED  - Enable secp256r1 (NIST 256-bit) curve
@@ -1004,7 +1150,7 @@
 // <i> Enable this setting if you need secp256r1 (NIST 256-bit) support using MBEDTLS
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP256R1_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP256R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP256R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP384R1_ENABLED  - Enable secp384r1 (NIST 384-bit) curve
@@ -1013,7 +1159,7 @@
 // <i> Enable this setting if you need secp384r1 (NIST 384-bit) support using MBEDTLS
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP384R1_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP384R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP384R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP521R1_ENABLED  - Enable secp521r1 (NIST 521-bit) curve
@@ -1022,7 +1168,7 @@
 // <i> Enable this setting if you need secp521r1 (NIST 521-bit) support using MBEDTLS
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP521R1_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP521R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP521R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP192K1_ENABLED  - Enable secp192k1 (Koblitz 192-bit) curve
@@ -1031,7 +1177,7 @@
 // <i> Enable this setting if you need secp192k1 (Koblitz 192-bit) support using MBEDTLS
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP192K1_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP192K1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP192K1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP224K1_ENABLED  - Enable secp224k1 (Koblitz 224-bit) curve
@@ -1040,7 +1186,7 @@
 // <i> Enable this setting if you need secp224k1 (Koblitz 224-bit) support using MBEDTLS
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP224K1_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP224K1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP224K1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP256K1_ENABLED  - Enable secp256k1 (Koblitz 256-bit) curve
@@ -1049,7 +1195,7 @@
 // <i> Enable this setting if you need secp256k1 (Koblitz 256-bit) support using MBEDTLS
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP256K1_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP256K1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_SECP256K1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_ECC_BP256R1_ENABLED  - Enable bp256r1 (Brainpool 256-bit) curve
@@ -1058,7 +1204,7 @@
 // <i> Enable this setting if you need bp256r1 (Brainpool 256-bit) support using MBEDTLS
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_ECC_BP256R1_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_BP256R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_BP256R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_ECC_BP384R1_ENABLED  - Enable bp384r1 (Brainpool 384-bit) curve
@@ -1067,7 +1213,7 @@
 // <i> Enable this setting if you need bp384r1 (Brainpool 384-bit) support using MBEDTLS
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_ECC_BP384R1_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_BP384R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_BP384R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_ECC_BP512R1_ENABLED  - Enable bp512r1 (Brainpool 512-bit) curve
@@ -1076,7 +1222,7 @@
 // <i> Enable this setting if you need bp512r1 (Brainpool 512-bit) support using MBEDTLS
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_ECC_BP512R1_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_BP512R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_BP512R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_ECC_CURVE25519_ENABLED  - Enable Curve25519 curve
@@ -1085,7 +1231,7 @@
 // <i> Enable this setting if you need Curve25519 support using MBEDTLS
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_ECC_CURVE25519_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_CURVE25519_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_ECC_CURVE25519_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_HASH_SHA256_ENABLED  - Enable mbed TLS SHA-256 hash functionality.
@@ -1094,7 +1240,7 @@
 // <i> mbed TLS backend implementation for SHA-256.
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_HASH_SHA256_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_HASH_SHA256_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_HASH_SHA256_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_HASH_SHA512_ENABLED  - Enable mbed TLS SHA-512 hash functionality.
@@ -1103,7 +1249,7 @@
 // <i> mbed TLS backend implementation for SHA-512.
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_HASH_SHA512_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_HASH_SHA512_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_HASH_SHA512_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_HMAC_SHA256_ENABLED  - Enable mbed TLS HMAC using SHA-256.
@@ -1112,7 +1258,7 @@
 // <i> mbed TLS backend implementation for HMAC using SHA-256.
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_HMAC_SHA256_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_HMAC_SHA256_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_HMAC_SHA256_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MBEDTLS_HMAC_SHA512_ENABLED  - Enable mbed TLS HMAC using SHA-512.
@@ -1121,7 +1267,7 @@
 // <i> mbed TLS backend implementation for HMAC using SHA-512.
 
 #ifndef NRF_CRYPTO_BACKEND_MBEDTLS_HMAC_SHA512_ENABLED
-#define NRF_CRYPTO_BACKEND_MBEDTLS_HMAC_SHA512_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MBEDTLS_HMAC_SHA512_ENABLED 0
 #endif
 
 // </e>
@@ -1137,7 +1283,7 @@
 // <i> Enable this setting if you need secp192r1 (NIST 192-bit) support using micro-ecc
 
 #ifndef NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP192R1_ENABLED
-#define NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP192R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP192R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP224R1_ENABLED  - Enable secp224r1 (NIST 224-bit) curve
@@ -1146,7 +1292,7 @@
 // <i> Enable this setting if you need secp224r1 (NIST 224-bit) support using micro-ecc
 
 #ifndef NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP224R1_ENABLED
-#define NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP224R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP224R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP256R1_ENABLED  - Enable secp256r1 (NIST 256-bit) curve
@@ -1155,7 +1301,7 @@
 // <i> Enable this setting if you need secp256r1 (NIST 256-bit) support using micro-ecc
 
 #ifndef NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP256R1_ENABLED
-#define NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP256R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP256R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP256K1_ENABLED  - Enable secp256k1 (Koblitz 256-bit) curve
@@ -1164,7 +1310,7 @@
 // <i> Enable this setting if you need secp256k1 (Koblitz 256-bit) support using micro-ecc
 
 #ifndef NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP256K1_ENABLED
-#define NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP256K1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_MICRO_ECC_ECC_SECP256K1_ENABLED 0
 #endif
 
 // </e>
@@ -1182,7 +1328,7 @@
 // <i> Enable mbed TLS CTR-DRBG standardized by NIST (NIST SP 800-90A Rev. 1). The nRF HW RNG is used as an entropy source for seeding.
 
 #ifndef NRF_CRYPTO_BACKEND_NRF_HW_RNG_MBEDTLS_CTR_DRBG_ENABLED
-#define NRF_CRYPTO_BACKEND_NRF_HW_RNG_MBEDTLS_CTR_DRBG_ENABLED 1
+#define NRF_CRYPTO_BACKEND_NRF_HW_RNG_MBEDTLS_CTR_DRBG_ENABLED 0
 #endif
 
 // </e>
@@ -1200,7 +1346,7 @@
 // <i> The nRF SW backend provide access to nRF SDK legacy hash implementation of SHA-256.
 
 #ifndef NRF_CRYPTO_BACKEND_NRF_SW_HASH_SHA256_ENABLED
-#define NRF_CRYPTO_BACKEND_NRF_SW_HASH_SHA256_ENABLED 1
+#define NRF_CRYPTO_BACKEND_NRF_SW_HASH_SHA256_ENABLED 0
 #endif
 
 // </e>
@@ -1216,7 +1362,7 @@
  
 
 #ifndef NRF_CRYPTO_BACKEND_OBERON_CHACHA_POLY_ENABLED
-#define NRF_CRYPTO_BACKEND_OBERON_CHACHA_POLY_ENABLED 1
+#define NRF_CRYPTO_BACKEND_OBERON_CHACHA_POLY_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_OBERON_ECC_SECP256R1_ENABLED  - Enable secp256r1 curve
@@ -1225,7 +1371,7 @@
 // <i> Enable this setting if you need secp256r1 curve support using Oberon library
 
 #ifndef NRF_CRYPTO_BACKEND_OBERON_ECC_SECP256R1_ENABLED
-#define NRF_CRYPTO_BACKEND_OBERON_ECC_SECP256R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_OBERON_ECC_SECP256R1_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_OBERON_ECC_CURVE25519_ENABLED  - Enable Curve25519 ECDH
@@ -1234,7 +1380,7 @@
 // <i> Enable this setting if you need Curve25519 ECDH support using Oberon library
 
 #ifndef NRF_CRYPTO_BACKEND_OBERON_ECC_CURVE25519_ENABLED
-#define NRF_CRYPTO_BACKEND_OBERON_ECC_CURVE25519_ENABLED 1
+#define NRF_CRYPTO_BACKEND_OBERON_ECC_CURVE25519_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_OBERON_ECC_ED25519_ENABLED  - Enable Ed25519 signature scheme
@@ -1243,7 +1389,7 @@
 // <i> Enable this setting if you need Ed25519 support using Oberon library
 
 #ifndef NRF_CRYPTO_BACKEND_OBERON_ECC_ED25519_ENABLED
-#define NRF_CRYPTO_BACKEND_OBERON_ECC_ED25519_ENABLED 1
+#define NRF_CRYPTO_BACKEND_OBERON_ECC_ED25519_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_OBERON_HASH_SHA256_ENABLED  - Oberon SHA-256 hash functionality
@@ -1252,7 +1398,7 @@
 // <i> Oberon backend implementation for SHA-256.
 
 #ifndef NRF_CRYPTO_BACKEND_OBERON_HASH_SHA256_ENABLED
-#define NRF_CRYPTO_BACKEND_OBERON_HASH_SHA256_ENABLED 1
+#define NRF_CRYPTO_BACKEND_OBERON_HASH_SHA256_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_OBERON_HASH_SHA512_ENABLED  - Oberon SHA-512 hash functionality
@@ -1261,7 +1407,7 @@
 // <i> Oberon backend implementation for SHA-512.
 
 #ifndef NRF_CRYPTO_BACKEND_OBERON_HASH_SHA512_ENABLED
-#define NRF_CRYPTO_BACKEND_OBERON_HASH_SHA512_ENABLED 1
+#define NRF_CRYPTO_BACKEND_OBERON_HASH_SHA512_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_OBERON_HMAC_SHA256_ENABLED  - Oberon HMAC using SHA-256
@@ -1270,7 +1416,7 @@
 // <i> Oberon backend implementation for HMAC using SHA-256.
 
 #ifndef NRF_CRYPTO_BACKEND_OBERON_HMAC_SHA256_ENABLED
-#define NRF_CRYPTO_BACKEND_OBERON_HMAC_SHA256_ENABLED 1
+#define NRF_CRYPTO_BACKEND_OBERON_HMAC_SHA256_ENABLED 0
 #endif
 
 // <q> NRF_CRYPTO_BACKEND_OBERON_HMAC_SHA512_ENABLED  - Oberon HMAC using SHA-512
@@ -1279,7 +1425,7 @@
 // <i> Oberon backend implementation for HMAC using SHA-512.
 
 #ifndef NRF_CRYPTO_BACKEND_OBERON_HMAC_SHA512_ENABLED
-#define NRF_CRYPTO_BACKEND_OBERON_HMAC_SHA512_ENABLED 1
+#define NRF_CRYPTO_BACKEND_OBERON_HMAC_SHA512_ENABLED 0
 #endif
 
 // </e>
@@ -1306,7 +1452,7 @@
 // <i> The Optiga backend provide external chip ECC using secp256r1.
 
 #ifndef NRF_CRYPTO_BACKEND_OPTIGA_ECC_SECP256R1_ENABLED
-#define NRF_CRYPTO_BACKEND_OPTIGA_ECC_SECP256R1_ENABLED 1
+#define NRF_CRYPTO_BACKEND_OPTIGA_ECC_SECP256R1_ENABLED 0
 #endif
 
 // </e>
@@ -1454,7 +1600,7 @@
 // <e> GPIOTE_ENABLED - nrf_drv_gpiote - GPIOTE peripheral driver - legacy layer
 //==========================================================
 #ifndef GPIOTE_ENABLED
-#define GPIOTE_ENABLED 1
+#define GPIOTE_ENABLED 0
 #endif
 // <o> GPIOTE_CONFIG_NUM_OF_LOW_POWER_EVENTS - Number of lower power input pins 
 #ifndef GPIOTE_CONFIG_NUM_OF_LOW_POWER_EVENTS
@@ -1760,7 +1906,7 @@
 // <e> NRFX_CLOCK_ENABLED - nrfx_clock - CLOCK peripheral driver
 //==========================================================
 #ifndef NRFX_CLOCK_ENABLED
-#define NRFX_CLOCK_ENABLED 1
+#define NRFX_CLOCK_ENABLED 0
 #endif
 // <o> NRFX_CLOCK_CONFIG_LF_SRC  - LF Clock Source
  
@@ -1984,7 +2130,7 @@
 // <e> NRFX_GPIOTE_ENABLED - nrfx_gpiote - GPIOTE peripheral driver
 //==========================================================
 #ifndef NRFX_GPIOTE_ENABLED
-#define NRFX_GPIOTE_ENABLED 1
+#define NRFX_GPIOTE_ENABLED 0
 #endif
 // <o> NRFX_GPIOTE_CONFIG_NUM_OF_LOW_POWER_EVENTS - Number of lower power input pins 
 #ifndef NRFX_GPIOTE_CONFIG_NUM_OF_LOW_POWER_EVENTS
@@ -2664,7 +2810,7 @@
  
 
 #ifndef NRFX_PRS_BOX_0_ENABLED
-#define NRFX_PRS_BOX_0_ENABLED 0
+#define NRFX_PRS_BOX_0_ENABLED 1
 #endif
 
 // <q> NRFX_PRS_BOX_1_ENABLED  - Enables box 1 in the module.
@@ -2678,7 +2824,7 @@
  
 
 #ifndef NRFX_PRS_BOX_2_ENABLED
-#define NRFX_PRS_BOX_2_ENABLED 0
+#define NRFX_PRS_BOX_2_ENABLED 1
 #endif
 
 // <q> NRFX_PRS_BOX_3_ENABLED  - Enables box 3 in the module.
@@ -3943,13 +4089,6 @@
 
 // </e>
 
-// <q> NRFX_SYSTICK_ENABLED  - nrfx_systick - ARM(R) SysTick driver
- 
-
-#ifndef NRFX_SYSTICK_ENABLED
-#define NRFX_SYSTICK_ENABLED 1
-#endif
-
 // <e> NRFX_TIMER_ENABLED - nrfx_timer - TIMER periperal driver
 //==========================================================
 #ifndef NRFX_TIMER_ENABLED
@@ -4441,7 +4580,7 @@
 // <e> NRFX_UARTE_ENABLED - nrfx_uarte - UARTE peripheral driver
 //==========================================================
 #ifndef NRFX_UARTE_ENABLED
-#define NRFX_UARTE_ENABLED 1
+#define NRFX_UARTE_ENABLED 0
 #endif
 // <o> NRFX_UARTE0_ENABLED - Enable UARTE0 instance 
 #ifndef NRFX_UARTE0_ENABLED
@@ -4567,7 +4706,7 @@
 // <e> NRFX_UART_ENABLED - nrfx_uart - UART peripheral driver
 //==========================================================
 #ifndef NRFX_UART_ENABLED
-#define NRFX_UART_ENABLED 1
+#define NRFX_UART_ENABLED 0
 #endif
 // <o> NRFX_UART0_ENABLED - Enable UART0 instance 
 #ifndef NRFX_UART0_ENABLED
@@ -4646,7 +4785,7 @@
 // <4=> Debug 
 
 #ifndef NRFX_UART_CONFIG_LOG_LEVEL
-#define NRFX_UART_CONFIG_LOG_LEVEL 3
+#define NRFX_UART_CONFIG_LOG_LEVEL 4
 #endif
 
 // <o> NRFX_UART_CONFIG_INFO_COLOR  - ANSI escape code prefix.
@@ -5669,13 +5808,6 @@
 
 // </e>
 
-// <q> SYSTICK_ENABLED  - nrf_drv_systick - ARM(R) SysTick driver - legacy layer
- 
-
-#ifndef SYSTICK_ENABLED
-#define SYSTICK_ENABLED 1
-#endif
-
 // <e> TIMER_ENABLED - nrf_drv_timer - TIMER periperal driver - legacy layer
 //==========================================================
 #ifndef TIMER_ENABLED
@@ -6152,13 +6284,6 @@
 // <h> nRF_Libraries 
 
 //==========================================================
-// <q> APP_FIFO_ENABLED  - app_fifo - Software FIFO implementation
- 
-
-#ifndef APP_FIFO_ENABLED
-#define APP_FIFO_ENABLED 1
-#endif
-
 // <q> APP_GPIOTE_ENABLED  - app_gpiote - GPIOTE events dispatcher
  
 
@@ -6176,7 +6301,7 @@
 // <e> APP_SCHEDULER_ENABLED - app_scheduler - Events scheduler
 //==========================================================
 #ifndef APP_SCHEDULER_ENABLED
-#define APP_SCHEDULER_ENABLED 1
+#define APP_SCHEDULER_ENABLED 0
 #endif
 // <q> APP_SCHEDULER_WITH_PAUSE  - Enabling pause feature
  
@@ -6242,7 +6367,7 @@
 // <e> APP_TIMER_ENABLED - app_timer - Application timer functionality
 //==========================================================
 #ifndef APP_TIMER_ENABLED
-#define APP_TIMER_ENABLED 1
+#define APP_TIMER_ENABLED 0
 #endif
 // <o> APP_TIMER_CONFIG_RTC_FREQUENCY  - Configure RTC prescaler.
  
@@ -6334,21 +6459,6 @@
 
 // </e>
 
-// <e> APP_UART_ENABLED - app_uart - UART driver
-//==========================================================
-#ifndef APP_UART_ENABLED
-#define APP_UART_ENABLED 1
-#endif
-// <o> APP_UART_DRIVER_INSTANCE  - UART instance used
- 
-// <0=> 0 
-
-#ifndef APP_UART_DRIVER_INSTANCE
-#define APP_UART_DRIVER_INSTANCE 0
-#endif
-
-// </e>
-
 // <q> APP_USBD_AUDIO_ENABLED  - app_usbd_audio - USB AUDIO class
  
 
@@ -6361,20 +6471,24 @@
 #ifndef APP_USBD_ENABLED
 #define APP_USBD_ENABLED 1
 #endif
-// <s> APP_USBD_VID - Vendor ID.
+// <o> APP_USBD_VID - Vendor ID.  <0x0000-0xFFFF> 
+
 
 // <i> Note: This value is not editable in Configuration Wizard.
 // <i> Vendor ID ordered from USB IF: http://www.usb.org/developers/vendor/
+
 #ifndef APP_USBD_VID
-#define APP_USBD_VID 0x1915
+#define APP_USBD_VID 0
 #endif
 
-// <s> APP_USBD_PID - Product ID.
+// <o> APP_USBD_PID - Product ID.  <0x0000-0xFFFF> 
+
 
 // <i> Note: This value is not editable in Configuration Wizard.
 // <i> Selected Product ID
+
 #ifndef APP_USBD_PID
-#define APP_USBD_PID 0x521A
+#define APP_USBD_PID 0
 #endif
 
 // <o> APP_USBD_DEVICE_VER_MAJOR - Major device version  <0-99> 
@@ -6538,7 +6652,7 @@
 // <i> Setting ID to 0 disables the string.
 //==========================================================
 #ifndef APP_USBD_STRING_ID_PRODUCT
-#define APP_USBD_STRING_ID_PRODUCT 2
+#define APP_USBD_STRING_ID_PRODUCT 1
 #endif
 // <q> APP_USBD_STRINGS_PRODUCT_EXTERN  - Define whether @ref APP_USBD_STRINGS_PRODUCT is created by macro or declared as a global variable.
  
@@ -6552,7 +6666,7 @@
 // <i> Note: This value is not editable in Configuration Wizard.
 // <i> List of product names that is defined the same way like in @ref APP_USBD_STRINGS_MANUFACTURER.
 #ifndef APP_USBD_STRINGS_PRODUCT
-#define APP_USBD_STRINGS_PRODUCT APP_USBD_STRING_DESC("nRF52 USB CDC BLE Demo")
+#define APP_USBD_STRINGS_PRODUCT APP_USBD_STRING_DESC("nRF52 USB Product")
 #endif
 
 // </e>
@@ -6562,13 +6676,13 @@
 // <i> Setting ID to 0 disables the string.
 //==========================================================
 #ifndef APP_USBD_STRING_ID_SERIAL
-#define APP_USBD_STRING_ID_SERIAL 3
+#define APP_USBD_STRING_ID_SERIAL 1
 #endif
 // <q> APP_USBD_STRING_SERIAL_EXTERN  - Define whether @ref APP_USBD_STRING_SERIAL is created by macro or declared as a global variable.
  
 
 #ifndef APP_USBD_STRING_SERIAL_EXTERN
-#define APP_USBD_STRING_SERIAL_EXTERN 1
+#define APP_USBD_STRING_SERIAL_EXTERN 0
 #endif
 
 // <s> APP_USBD_STRING_SERIAL - String descriptor for the serial number.
@@ -6576,7 +6690,7 @@
 // <i> Note: This value is not editable in Configuration Wizard.
 // <i> Serial number that is defined the same way like in @ref APP_USBD_STRINGS_MANUFACTURER.
 #ifndef APP_USBD_STRING_SERIAL
-#define APP_USBD_STRING_SERIAL g_extern_serial_number
+#define APP_USBD_STRING_SERIAL APP_USBD_STRING_DESC("000000000000")
 #endif
 
 // </e>
@@ -6586,7 +6700,7 @@
 // <i> Setting ID to 0 disables the string.
 //==========================================================
 #ifndef APP_USBD_STRING_ID_CONFIGURATION
-#define APP_USBD_STRING_ID_CONFIGURATION 4
+#define APP_USBD_STRING_ID_CONFIGURATION 1
 #endif
 // <q> APP_USBD_STRING_CONFIGURATION_EXTERN  - Define whether @ref APP_USBD_STRINGS_CONFIGURATION is created by macro or declared as global variable.
  
@@ -6821,7 +6935,7 @@
  
 
 #ifndef HARDFAULT_HANDLER_ENABLED
-#define HARDFAULT_HANDLER_ENABLED 1
+#define HARDFAULT_HANDLER_ENABLED 0
 #endif
 
 // <e> HCI_MEM_POOL_ENABLED - hci_mem_pool - memory pool implementation used by HCI
@@ -7443,7 +7557,7 @@
  
 
 #ifndef NRF_SORTLIST_ENABLED
-#define NRF_SORTLIST_ENABLED 1
+#define NRF_SORTLIST_ENABLED 0
 #endif
 
 // <q> NRF_SPI_MNGR_ENABLED  - nrf_spi_mngr - SPI transaction manager
@@ -7465,13 +7579,6 @@
 
 #ifndef NRF_TWI_MNGR_ENABLED
 #define NRF_TWI_MNGR_ENABLED 0
-#endif
-
-// <q> RETARGET_ENABLED  - retarget - Retargeting stdio functions
- 
-
-#ifndef RETARGET_ENABLED
-#define RETARGET_ENABLED 1
 #endif
 
 // <q> SLIP_ENABLED  - slip - SLIP encoding and decoding
@@ -7507,7 +7614,7 @@
  
 
 #ifndef TASK_MANAGER_CONFIG_STACK_PROFILER_ENABLED
-#define TASK_MANAGER_CONFIG_STACK_PROFILER_ENABLED 1
+#define TASK_MANAGER_CONFIG_STACK_PROFILER_ENABLED 0
 #endif
 
 // <o> TASK_MANAGER_CONFIG_STACK_GUARD  - Configures stack guard.
@@ -7532,7 +7639,7 @@
  
 
 #ifndef BUTTON_ENABLED
-#define BUTTON_ENABLED 1
+#define BUTTON_ENABLED 0
 #endif
 
 // <q> BUTTON_HIGH_ACCURACY_ENABLED  - Enables GPIOTE high accuracy for buttons
@@ -7562,7 +7669,7 @@
 // <i> This may limit throughput if a lot of binary data is sent, but in terminal mode operation it makes sure that the data is always displayed right after it is sent.
 
 #ifndef APP_USBD_CDC_ACM_ZLP_ON_EPSIZE_WRITE
-#define APP_USBD_CDC_ACM_ZLP_ON_EPSIZE_WRITE 1
+#define APP_USBD_CDC_ACM_ZLP_ON_EPSIZE_WRITE 0
 #endif
 
 // </h> 
@@ -7587,7 +7694,7 @@
  
 
 #ifndef NRF_CLI_BUILD_IN_CMDS_ENABLED
-#define NRF_CLI_BUILD_IN_CMDS_ENABLED 1
+#define NRF_CLI_BUILD_IN_CMDS_ENABLED 0
 #endif
 
 // <o> NRF_CLI_CMD_BUFF_SIZE - Maximum buffer size for a single command. 
@@ -7624,7 +7731,7 @@
 // <e> NRF_CLI_HISTORY_ENABLED - Enable CLI history mode.
 //==========================================================
 #ifndef NRF_CLI_HISTORY_ENABLED
-#define NRF_CLI_HISTORY_ENABLED 1
+#define NRF_CLI_HISTORY_ENABLED 0
 #endif
 // <o> NRF_CLI_HISTORY_ELEMENT_SIZE - Size of one memory object reserved for CLI history. 
 #ifndef NRF_CLI_HISTORY_ELEMENT_SIZE
@@ -7642,14 +7749,14 @@
  
 
 #ifndef NRF_CLI_VT100_COLORS_ENABLED
-#define NRF_CLI_VT100_COLORS_ENABLED 1
+#define NRF_CLI_VT100_COLORS_ENABLED 0
 #endif
 
 // <q> NRF_CLI_STATISTICS_ENABLED  - Enable CLI statistics.
  
 
 #ifndef NRF_CLI_STATISTICS_ENABLED
-#define NRF_CLI_STATISTICS_ENABLED 1
+#define NRF_CLI_STATISTICS_ENABLED 0
 #endif
 
 // <q> NRF_CLI_LOG_BACKEND  - Enable logger backend interface.
@@ -7864,7 +7971,7 @@
 // <i> Log data is buffered and can be processed in idle.
 
 #ifndef NRF_LOG_DEFERRED
-#define NRF_LOG_DEFERRED 1
+#define NRF_LOG_DEFERRED 0
 #endif
 
 // <q> NRF_LOG_FILTERS_ENABLED  - Enable dynamic filtering of logs.
@@ -8042,7 +8149,7 @@
 // <e> NRF_STACK_GUARD_CONFIG_LOG_ENABLED - Enables logging in the module.
 //==========================================================
 #ifndef NRF_STACK_GUARD_CONFIG_LOG_ENABLED
-#define NRF_STACK_GUARD_CONFIG_LOG_ENABLED 0
+#define NRF_STACK_GUARD_CONFIG_LOG_ENABLED 1
 #endif
 // <o> NRF_STACK_GUARD_CONFIG_LOG_LEVEL  - Default Severity level
  
@@ -8405,7 +8512,7 @@
 // <e> NRFX_USBD_CONFIG_LOG_ENABLED - Enable logging in the module
 //==========================================================
 #ifndef NRFX_USBD_CONFIG_LOG_ENABLED
-#define NRFX_USBD_CONFIG_LOG_ENABLED 0
+#define NRFX_USBD_CONFIG_LOG_ENABLED 1
 #endif
 // <o> NRFX_USBD_CONFIG_LOG_LEVEL  - Default Severity level
  
@@ -8416,7 +8523,7 @@
 // <4=> Debug 
 
 #ifndef NRFX_USBD_CONFIG_LOG_LEVEL
-#define NRFX_USBD_CONFIG_LOG_LEVEL 3
+#define NRFX_USBD_CONFIG_LOG_LEVEL 4
 #endif
 
 // <o> NRFX_USBD_CONFIG_INFO_COLOR  - ANSI escape code prefix.
@@ -9126,7 +9233,7 @@
 // <e> USBD_CONFIG_LOG_ENABLED - Enable logging in the module
 //==========================================================
 #ifndef USBD_CONFIG_LOG_ENABLED
-#define USBD_CONFIG_LOG_ENABLED 0
+#define USBD_CONFIG_LOG_ENABLED 1
 #endif
 // <o> USBD_CONFIG_LOG_LEVEL  - Default Severity level
  
@@ -9137,7 +9244,7 @@
 // <4=> Debug 
 
 #ifndef USBD_CONFIG_LOG_LEVEL
-#define USBD_CONFIG_LOG_LEVEL 3
+#define USBD_CONFIG_LOG_LEVEL 4
 #endif
 
 // <o> USBD_CONFIG_INFO_COLOR  - ANSI escape code prefix.
@@ -9368,7 +9475,7 @@
 // <e> APP_USBD_CDC_ACM_CONFIG_LOG_ENABLED - Enables logging in the module.
 //==========================================================
 #ifndef APP_USBD_CDC_ACM_CONFIG_LOG_ENABLED
-#define APP_USBD_CDC_ACM_CONFIG_LOG_ENABLED 0
+#define APP_USBD_CDC_ACM_CONFIG_LOG_ENABLED 1
 #endif
 // <o> APP_USBD_CDC_ACM_CONFIG_LOG_LEVEL  - Default Severity level
  
@@ -9379,7 +9486,7 @@
 // <4=> Debug 
 
 #ifndef APP_USBD_CDC_ACM_CONFIG_LOG_LEVEL
-#define APP_USBD_CDC_ACM_CONFIG_LOG_LEVEL 3
+#define APP_USBD_CDC_ACM_CONFIG_LOG_LEVEL 4
 #endif
 
 // <o> APP_USBD_CDC_ACM_CONFIG_INFO_COLOR  - ANSI escape code prefix.
@@ -9419,7 +9526,7 @@
 // <e> APP_USBD_CONFIG_LOG_ENABLED - Enable logging in the module.
 //==========================================================
 #ifndef APP_USBD_CONFIG_LOG_ENABLED
-#define APP_USBD_CONFIG_LOG_ENABLED 0
+#define APP_USBD_CONFIG_LOG_ENABLED 1
 #endif
 // <o> APP_USBD_CONFIG_LOG_LEVEL  - Default Severity level
  
@@ -9430,7 +9537,7 @@
 // <4=> Debug 
 
 #ifndef APP_USBD_CONFIG_LOG_LEVEL
-#define APP_USBD_CONFIG_LOG_LEVEL 3
+#define APP_USBD_CONFIG_LOG_LEVEL 4
 #endif
 
 // <o> APP_USBD_CONFIG_INFO_COLOR  - ANSI escape code prefix.
@@ -10373,7 +10480,7 @@
 // <4=> Debug 
 
 #ifndef NRF_SDH_BLE_LOG_LEVEL
-#define NRF_SDH_BLE_LOG_LEVEL 3
+#define NRF_SDH_BLE_LOG_LEVEL 4
 #endif
 
 // <o> NRF_SDH_BLE_INFO_COLOR  - ANSI escape code prefix.
@@ -10424,7 +10531,7 @@
 // <4=> Debug 
 
 #ifndef NRF_SDH_LOG_LEVEL
-#define NRF_SDH_LOG_LEVEL 3
+#define NRF_SDH_LOG_LEVEL 4
 #endif
 
 // <o> NRF_SDH_INFO_COLOR  - ANSI escape code prefix.
@@ -10475,7 +10582,7 @@
 // <4=> Debug 
 
 #ifndef NRF_SDH_SOC_LOG_LEVEL
-#define NRF_SDH_SOC_LOG_LEVEL 3
+#define NRF_SDH_SOC_LOG_LEVEL 4
 #endif
 
 // <o> NRF_SDH_SOC_INFO_COLOR  - ANSI escape code prefix.
@@ -10617,7 +10724,7 @@
 // <e> PM_LOG_ENABLED - Enable logging in Peer Manager and its submodules.
 //==========================================================
 #ifndef PM_LOG_ENABLED
-#define PM_LOG_ENABLED 1
+#define PM_LOG_ENABLED 0
 #endif
 // <o> PM_LOG_LEVEL  - Default Severity level
  
@@ -10844,7 +10951,7 @@
 // <i> If bonding is enabled at least one of the BLE_NFC_SEC_PARAM_KDIST options must be enabled.
 //==========================================================
 #ifndef BLE_NFC_SEC_PARAM_BOND
-#define BLE_NFC_SEC_PARAM_BOND 1
+#define BLE_NFC_SEC_PARAM_BOND 0
 #endif
 // <q> BLE_NFC_SEC_PARAM_KDIST_OWN_ENC  - Enables Long Term Key and Master Identification distribution by device.
  
@@ -11459,14 +11566,14 @@
 
 // <o> NRF_SDH_BLE_CENTRAL_LINK_COUNT - Maximum number of central links. 
 #ifndef NRF_SDH_BLE_CENTRAL_LINK_COUNT
-#define NRF_SDH_BLE_CENTRAL_LINK_COUNT 0
+#define NRF_SDH_BLE_CENTRAL_LINK_COUNT 2
 #endif
 
 // <o> NRF_SDH_BLE_TOTAL_LINK_COUNT - Total link count. 
 // <i> Maximum number of total concurrent connections using the default configuration.
 
 #ifndef NRF_SDH_BLE_TOTAL_LINK_COUNT
-#define NRF_SDH_BLE_TOTAL_LINK_COUNT 1
+#define NRF_SDH_BLE_TOTAL_LINK_COUNT 3
 #endif
 
 // <o> NRF_SDH_BLE_GAP_EVENT_LENGTH - GAP event length. 
@@ -11478,7 +11585,7 @@
 
 // <o> NRF_SDH_BLE_GATT_MAX_MTU_SIZE - Static maximum MTU size. 
 #ifndef NRF_SDH_BLE_GATT_MAX_MTU_SIZE
-#define NRF_SDH_BLE_GATT_MAX_MTU_SIZE 247
+#define NRF_SDH_BLE_GATT_MAX_MTU_SIZE 23
 #endif
 
 // <o> NRF_SDH_BLE_GATTS_ATTR_TAB_SIZE - Attribute Table size in bytes. The size must be a multiple of 4. 
@@ -11488,7 +11595,7 @@
 
 // <o> NRF_SDH_BLE_VS_UUID_COUNT - The number of vendor-specific UUIDs. 
 #ifndef NRF_SDH_BLE_VS_UUID_COUNT
-#define NRF_SDH_BLE_VS_UUID_COUNT 1
+#define NRF_SDH_BLE_VS_UUID_COUNT 0
 #endif
 
 // <q> NRF_SDH_BLE_SERVICE_CHANGED  - Include the Service Changed characteristic in the Attribute Table.
@@ -11737,90 +11844,6 @@
 
 #ifndef BSP_BTN_BLE_OBSERVER_PRIO
 #define BSP_BTN_BLE_OBSERVER_PRIO 1
-#endif
-
-// <o> NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO  
-// <i> Priority with which BLE events are dispatched to the NFC pairing library.
-
-#ifndef NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO
-#define NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO 1
-#endif
-
-// <o> NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO  
-// <i> Priority with which BLE events are dispatched to the NFC pairing library.
-
-#ifndef NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO
-#define NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO 1
-#endif
-
-// <o> NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO  
-// <i> Priority with which BLE events are dispatched to the NFC pairing library.
-
-#ifndef NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO
-#define NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO 1
-#endif
-
-// <o> NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO  
-// <i> Priority with which BLE events are dispatched to the NFC pairing library.
-
-#ifndef NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO
-#define NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO 1
-#endif
-
-// <o> NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO  
-// <i> Priority with which BLE events are dispatched to the NFC pairing library.
-
-#ifndef NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO
-#define NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO 1
-#endif
-
-// <o> NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO  
-// <i> Priority with which BLE events are dispatched to the NFC pairing library.
-
-#ifndef NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO
-#define NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO 1
-#endif
-
-// <o> NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO  
-// <i> Priority with which BLE events are dispatched to the NFC pairing library.
-
-#ifndef NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO
-#define NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO 1
-#endif
-
-// <o> NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO  
-// <i> Priority with which BLE events are dispatched to the NFC pairing library.
-
-#ifndef NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO
-#define NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO 1
-#endif
-
-// <o> NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO  
-// <i> Priority with which BLE events are dispatched to the NFC pairing library.
-
-#ifndef NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO
-#define NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO 1
-#endif
-
-// <o> NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO  
-// <i> Priority with which BLE events are dispatched to the NFC pairing library.
-
-#ifndef NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO
-#define NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO 1
-#endif
-
-// <o> NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO  
-// <i> Priority with which BLE events are dispatched to the NFC pairing library.
-
-#ifndef NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO
-#define NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO 1
-#endif
-
-// <o> NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO  
-// <i> Priority with which BLE events are dispatched to the NFC pairing library.
-
-#ifndef NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO
-#define NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO 1
 #endif
 
 // <o> NFC_BLE_PAIR_LIB_BLE_OBSERVER_PRIO  
