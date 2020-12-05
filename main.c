@@ -45,7 +45,7 @@ static void cdc_acm_user_ev_handler(app_usbd_class_inst_t const *p_inst,
 #define CDC_ACM_DATA_EPOUT NRF_DRV_USBD_EPOUT1
 
 // TODO real length??
-#define CDC_DATA_ARRAY_LEN  (31*2+1)
+#define CDC_DATA_ARRAY_LEN ((255 * 2) + 1)
 static char m_cdc_data_array[CDC_DATA_ARRAY_LEN];
 
 /** @brief CDC_ACM class instance */
@@ -77,24 +77,22 @@ static void scan_start(void) {
 
 static void ble_evt_handler(ble_evt_t const *p_ble_evt, void *p_context) {
   ret_code_t err_code;
+  char *p = &m_cdc_data_array[0];
 
   switch (p_ble_evt->header.evt_id) {
   case BLE_GAP_EVT_ADV_REPORT: {
+    //NRF_LOG_RAW_HEXDUMP_INFO(m_scan.scan_buffer.p_data, m_scan.scan_buffer.len);
+    //NRF_LOG_INFO("%d # # # # # # # # # # # # # # # \r\n", m_scan.scan_buffer.len);
 
+    for (int i = 0; i < m_scan.scan_buffer.len && i < CDC_DATA_ARRAY_LEN; i++) {
+      p += sprintf(p, "%02x", m_scan.scan_buffer.p_data[i]);
+    }
+    //NRF_LOG_INFO(":%s:", m_cdc_data_array);
 
-    //memset(m_cdc_data_array, 0, CDC_DATA_ARRAY_LEN);
-//    char *p = &m_cdc_data_array[0];
-//    for (int i = 0; i <  m_scan.scan_buffer.len; i++) {
-//      p += sprintf(p, "%02x", m_scan.scan_buffer.p_data[i]);
-//    }
-    //err_code = app_usbd_cdc_acm_write(&m_app_cdc_acm, m_cdc_data_array, 2+m_scan.scan_buffer.len*2 + 1);
-    NRF_LOG_RAW_HEXDUMP_INFO(m_scan.scan_buffer.p_data, m_scan.scan_buffer.len);
-    NRF_LOG_INFO("# # # # # # # # # # # # # # # # \r\n");
-//    NRF_LOG_INFO(p);
-
-    //if (err_code != NRF_SUCCESS) {
-    //  NRF_LOG_INFO("CDC ACM unavailable, data received: %s", m_cdc_data_array);
-    //}
+    err_code = app_usbd_cdc_acm_write(&m_app_cdc_acm, m_cdc_data_array, CDC_DATA_ARRAY_LEN);
+    if (err_code != NRF_SUCCESS) {
+      NRF_LOG_INFO("CDC ACM unavailable, data received: %s", m_cdc_data_array);
+    }
   } break;
   default:
     break;
@@ -276,6 +274,8 @@ int main(void) {
 
   NRF_LOG_FLUSH();
   for (;;) {
+    while (app_usbd_event_queue_process()) {
+    }
     idle_state_handle();
   }
 }

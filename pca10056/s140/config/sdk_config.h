@@ -4873,7 +4873,7 @@
 // <i> Else, there will be no response.
 
 #ifndef NRFX_USBD_CONFIG_ISO_IN_ZLP
-#define NRFX_USBD_CONFIG_ISO_IN_ZLP 0
+#define NRFX_USBD_CONFIG_ISO_IN_ZLP 1
 #endif
 
 // <q> NRFX_USBD_USE_WORKAROUND_FOR_ANOMALY_211  - Use workaround for anomaly 211
@@ -6160,7 +6160,7 @@
 // <e> UART1_ENABLED - Enable UART1 instance
 //==========================================================
 #ifndef UART1_ENABLED
-#define UART1_ENABLED 0
+#define UART1_ENABLED 1
 #endif
 // </e>
 
@@ -6218,7 +6218,7 @@
 // <i> NOTE: This option does not work on Engineering A chip.
 
 #ifndef USBD_CONFIG_ISO_IN_ZLP
-#define USBD_CONFIG_ISO_IN_ZLP 0
+#define USBD_CONFIG_ISO_IN_ZLP 1
 #endif
 
 // </e>
@@ -6622,7 +6622,7 @@
 // <i> Setting ID to 0 disables the string.
 //==========================================================
 #ifndef APP_USBD_STRING_ID_MANUFACTURER
-#define APP_USBD_STRING_ID_MANUFACTURER 1
+#define APP_USBD_STRING_ID_MANUFACTURER 0
 #endif
 // <q> APP_USBD_STRINGS_MANUFACTURER_EXTERN  - Define whether @ref APP_USBD_STRINGS_MANUFACTURER is created by macro or declared as a global variable.
  
@@ -6652,7 +6652,7 @@
 // <i> Setting ID to 0 disables the string.
 //==========================================================
 #ifndef APP_USBD_STRING_ID_PRODUCT
-#define APP_USBD_STRING_ID_PRODUCT 1
+#define APP_USBD_STRING_ID_PRODUCT 0
 #endif
 // <q> APP_USBD_STRINGS_PRODUCT_EXTERN  - Define whether @ref APP_USBD_STRINGS_PRODUCT is created by macro or declared as a global variable.
  
@@ -6676,7 +6676,7 @@
 // <i> Setting ID to 0 disables the string.
 //==========================================================
 #ifndef APP_USBD_STRING_ID_SERIAL
-#define APP_USBD_STRING_ID_SERIAL 1
+#define APP_USBD_STRING_ID_SERIAL 0
 #endif
 // <q> APP_USBD_STRING_SERIAL_EXTERN  - Define whether @ref APP_USBD_STRING_SERIAL is created by macro or declared as a global variable.
  
@@ -6700,7 +6700,7 @@
 // <i> Setting ID to 0 disables the string.
 //==========================================================
 #ifndef APP_USBD_STRING_ID_CONFIGURATION
-#define APP_USBD_STRING_ID_CONFIGURATION 1
+#define APP_USBD_STRING_ID_CONFIGURATION 0
 #endif
 // <q> APP_USBD_STRING_CONFIGURATION_EXTERN  - Define whether @ref APP_USBD_STRINGS_CONFIGURATION is created by macro or declared as global variable.
  
@@ -7669,7 +7669,7 @@
 // <i> This may limit throughput if a lot of binary data is sent, but in terminal mode operation it makes sure that the data is always displayed right after it is sent.
 
 #ifndef APP_USBD_CDC_ACM_ZLP_ON_EPSIZE_WRITE
-#define APP_USBD_CDC_ACM_ZLP_ON_EPSIZE_WRITE 0
+#define APP_USBD_CDC_ACM_ZLP_ON_EPSIZE_WRITE 1
 #endif
 
 // </h> 
@@ -7706,7 +7706,7 @@
  
 
 #ifndef NRF_CLI_ECHO_STATUS
-#define NRF_CLI_ECHO_STATUS 1
+#define NRF_CLI_ECHO_STATUS 0
 #endif
 
 // <q> NRF_CLI_WILDCARD_ENABLED  - Enable wildcard functionality for CLI commands.
@@ -7763,7 +7763,7 @@
  
 
 #ifndef NRF_CLI_LOG_BACKEND
-#define NRF_CLI_LOG_BACKEND 1
+#define NRF_CLI_LOG_BACKEND 0
 #endif
 
 // <q> NRF_CLI_USES_TASK_MANAGER_ENABLED  - Enable CLI to use task_manager
@@ -7845,7 +7845,7 @@
 // <e> NRF_LOG_BACKEND_UART_ENABLED - nrf_log_backend_uart - Log UART backend
 //==========================================================
 #ifndef NRF_LOG_BACKEND_UART_ENABLED
-#define NRF_LOG_BACKEND_UART_ENABLED 1
+#define NRF_LOG_BACKEND_UART_ENABLED 0
 #endif
 // <o> NRF_LOG_BACKEND_UART_TX_PIN - UART TX pin 
 #ifndef NRF_LOG_BACKEND_UART_TX_PIN
@@ -7890,7 +7890,7 @@
 // <e> NRF_LOG_ENABLED - nrf_log - Logger
 //==========================================================
 #ifndef NRF_LOG_ENABLED
-#define NRF_LOG_ENABLED 1
+#define NRF_LOG_ENABLED 0
 #endif
 // <h> Log message pool - Configuration of log message pool
 
