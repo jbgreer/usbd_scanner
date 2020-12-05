@@ -1,10 +1,9 @@
-# Nordic Semiconductor usbd_scanner PCA10056 & PCA10059 nRF52840 Example
+# Nordic Semiconductor usbd cdc acm scanner logging
 
 In the interest of expanding availability of examples for this device, I have 
-created an example that scans for advertisements and publishes them using
-the usbd cdc acm
+created this usbd_scanner example.  This scans for advertisements and publishes them to a USB CDC ACM port.
 
-
+Right now this works for the nRF52840 (PCA10056).  PCA10059 will aarive shortly.
 
 This example is based on the one found in nRF5 SDK version 17.0.2
 Please see the Nordic Semiconductor InfoCenter for more information.
